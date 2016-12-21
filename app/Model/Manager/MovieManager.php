@@ -17,7 +17,6 @@ class MovieManager
               ORDER BY votes DESC
 
               ;";
-              //LIMIT 0,8
       $dbh = Db::getDbh();
 
       $stmt = $dbh->prepare($sql);
@@ -45,11 +44,12 @@ class MovieManager
     }
 
     public function findAllByGenre($genre) {
-      $sql = "SELECT *
-              FROM movies
-              INNER JOIN movies_genres ON movies.id = movies_genres.movieId
-              INNER JOIN genres ON genres.id = movies_genres.genreId
-              WHERE genres.name = :genre;";
+      $sql = "SELECT g.id AS genreId, m.id, m.imdbId, m.title
+              FROM movies m
+              INNER JOIN movies_genres ON m.id = movies_genres.movieId
+              INNER JOIN genres g ON g.id = movies_genres.genreId
+              WHERE g.name = 'Action'
+              ORDER BY votes DESC;";
 
       $dbh = Db::getDbh();
       $stmt = $dbh->prepare($sql);
