@@ -67,24 +67,21 @@ class DefaultController
 		$watchlist = $_SESSION['user']['watchlist'];
 		$watchlistName[] = '';
 
-		$usermanager = new \Model\Manager\UserManager();
+		$userManager = new \Model\Manager\UserManager();
 		$movieManager = new \Model\Manager\MovieManager();
 
 		if(!empty($_GET['addWl'])) {
 			$idWl = $_GET['addWl'];
 
-
-			$isInList = stripos($watchlist, $idWl);
-
+			$isInList = explode("-", $watchlist);
 			//ajouter l'id du get à la watchlist + titre du film
 			//si cet id n'est pas deja présent
-			if ($isInList === false) {
+			if (!in_array($idWl, $isInList)) {
 					$_SESSION['user']['watchlist'] .= $idWl . "-";
+					$userManager->addUserWatchlist($_SESSION['user']['watchlist'],$_SESSION['user']['id']);
 			}
 
 			;
-
-			// get = ajouter id film à la watchlist user (SQL)
 			// setWatchlist($watchlist)
 			//redirige sur l'userHome
 			header("Location: user");
@@ -123,9 +120,9 @@ class DefaultController
 
 			$usernameOrEmail = $_POST['usernameOrEmail'];
 
-			$usermanager = new \Model\Manager\UserManager();
+			$userManager = new \Model\Manager\UserManager();
 			//on va chercher le user en fonction du pseudo ou de l'email
-			$user = $usermanager->searchUser($usernameOrEmail);
+			$user = $userManager->searchUser($usernameOrEmail);
 
 			//hache le mot de passe et le compare à celui de la bdd
 			if (password_verify($_POST['password'], $user['password'])){

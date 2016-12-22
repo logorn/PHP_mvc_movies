@@ -68,4 +68,24 @@ class UserManager
 
   }
 
+  public function addUserWatchlist($watchlist,$userId) {
+
+    $sql = "UPDATE users
+           SET watchlist = :watchlist
+           WHERE id = :id
+           ;";
+
+    $dbh = Db::getDbh();
+    $stmt = $dbh->prepare($sql);
+
+    $stmt->bindValue(":id", $userId);
+    $stmt->bindValue(":watchlist", $watchlist);
+
+    $result = $stmt->execute();
+
+    return $result;
+
+
+  }
+
 }

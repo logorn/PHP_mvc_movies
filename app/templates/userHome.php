@@ -7,12 +7,14 @@ header("Location: home"); }?>
       <br>
         <h1 class="page-header">Welcome back, <?= $_SESSION['user']['username'] ?></h1>
 
-        <?php var_dump($_SESSION) ?>
-        <?php var_dump($watchlistName) ?>
         <p><h3>Your Watchlist :</h3></p>
-        <?php foreach ($watchlist as $movieId) {
-        echo $watchlistName[$movieId]['title'] . "<br>";
-        echo BASE_URL . 'movie/detail?id=' . $movieId . "<br>";
+        <?php if (!empty($watchlist)) {
+          foreach ($watchlist as $movieId) {
+          echo '<p><a href="';
+          echo BASE_URL . 'movie/detail?id=' . $movieId;
+          echo '">';
+          echo $watchlistName[$movieId]['title'] . "</a></p>";
+          }
         }?>
 
         <hr>
