@@ -79,6 +79,7 @@ class DefaultController
 			$usermanager = new \Model\Manager\UserManager();
 			//on va chercher le user en fonction du pseudo ou de l'email
 			$user = $usermanager->searchUser($usernameOrEmail);
+
 			//hache le mot de passe et le compare à celui de la bdd
 			if (password_verify($_POST['password'], $user['password'])){
 				//connectez l'user en stockant une ou des infos dans la session.
@@ -108,13 +109,12 @@ class DefaultController
 	{
 		//traitement du formulaire d'inscription
 		//appelle le usermanager pour les requetes SQL
-		//affichage du formulaire
 
 		$errors = [];
 
 		if (!empty($_POST)){
 			//attention aux XSS ici
-			$usermanager = new \Model\Manager\UserManager();
+			$userManager = new \Model\Manager\UserManager();
 
 			$username = strip_tags($_POST['username']);
 			$email = strip_tags($_POST['email']);
@@ -137,14 +137,14 @@ class DefaultController
 			}
 
 			//vérifie que l'email n'existe pas déjà
-			$checkEmail = $usermanager->checkEmail($email);
+			$checkEmail = $userManager->checkEmail($email);
 
 			if ($checkEmail){
 				$errors[] = "Cet email est déjà enregistré ici !";
 			}
 
 			//vérifie que le username n'existe pas déjà
-			$checkUsername = $usermanager->checkEmail($username);
+			$checkUsername = $userManager->checkUsername($username);
 
 			if ($checkUsername){
 				$errors[] = "Ce pseudo est déjà enregistré ici !";
@@ -172,7 +172,6 @@ class DefaultController
 				if ($addUser){
 
 					//on pourrait aussi directement connecter l'utilisateur ici
-
 					//redirige sur l'accueil
 					header("Location: login.php");
 				}
@@ -181,6 +180,10 @@ class DefaultController
 				}
 			}
 		} //ENDIF $_POST
+		$datas = [
+			"errors" => $errors
+		];
+		View::show("register", "Website | Register", $datas);
 	}
 
 	public function logout()

@@ -1,3 +1,4 @@
+
 <div class="row">
     <div class="col-lg-12">
       <br>
@@ -23,9 +24,12 @@
 				<input type="password" name="password_bis" id="password_bis" value="">
 			</div>
 			<div>
-			<?php foreach($errors as $error): ?>
-				<p><?= $error ?></p>
-			<?php endforeach; ?>
+			<?php
+      if(!empty($errors)) {
+        foreach($errors as $error) {
+          echo "<p>" . $error . "</p>";
+        }
+      }?>
 			</div>
 			<div>
 				<button type="submit">M'inscrire !</button>

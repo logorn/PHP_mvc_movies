@@ -17,7 +17,6 @@
 	$routes = [
 		"/" => "home", 								// accueil du site
 		"/movie/detail" => "detail", 	// détails sur un film selectionné
-		"/admin" => "adminHome", 			// panneau admin
 		"/user" => "userHome", 				// panneau user (affiche la watchlist)
 		"/login" => "login", 					// user login page
 		"/register" => "register" 		// user register page

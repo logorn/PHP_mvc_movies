@@ -61,8 +61,10 @@ class UserManager
     $stmt->bindValue(":password", $passwordHash);
     $stmt->bindValue(":token", $token);
     $stmt->bindValue(":role", $role);
+    $result = $stmt->execute();
 
     return $result;
+
 
   }
 
