@@ -49,6 +49,8 @@ Admin :
 
 - gsylvestre for the MVC PHP website sample (https://github.com/gsylvestre/mvc-base)
 - startbootstrap.com for the free template (https://startbootstrap.com/template-overviews/4-col-portfolio/)
+- ircmaxell for random-lib (https://github.com/ircmaxell/RandomLib)
+- claviska for simpleimage (https://github.com/claviska/SimpleImage)
 
 
 romwaldtff

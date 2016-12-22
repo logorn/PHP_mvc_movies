@@ -9,7 +9,7 @@
 <!-- /.row -->
 <div class="row">
 <form class="col-xs-2" action="index.php" method="post">
-  <label for="idselect">Find a movie by genre : </label>
+  <label for="idselect">Find a movie by genre: </label>
     <select class="form-control" name="genre" id="idselect">
 
       <?php foreach ($genres as $key): ?>
@@ -21,8 +21,8 @@
 </form>
 
 <form class="col-xs-5" action="index.php" method="post">
-  <label for="idselect">Find a movie using a key word : </label>
-      <input type="text" name="keyword" class="form-control" id="keyword" value="" placeholder="Type a keyword">
+  <label for="idselect">Find a movie using a key word: </label>
+      <input type="text" name="keyword" class="form-control" id="keyword" value="" placeholder="Year, Actor, Title, Plot...">
     <button type="submit">Search</button>
 </form>
 </div>

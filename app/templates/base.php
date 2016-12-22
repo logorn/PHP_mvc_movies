@@ -27,7 +27,7 @@
 					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 							<ul class="nav navbar-nav">
 									<li>
-											<a href="#">Log in</a>
+											<a href="<?= BASE_URL ?>user">Log in</a>
 									</li>
 									<li>
 							</ul>
