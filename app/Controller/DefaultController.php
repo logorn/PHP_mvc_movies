@@ -61,6 +61,29 @@ class DefaultController
 		$movie->setGenre($genre->getGenre());
 		View::show("detail.php", "Website | Movie details", ["movie" => $movie]);
 	}
+
+	public function userHome()
+	{
+		$watchlist = $_SESSION['user']['watchlist'];
+		$usermanager = new \Model\Manager\UserManager();
+
+		if(!empty($_GET['addWl'])) {
+			$idWl = $_GET['addWl'];
+
+			//ajouter l'id du get à la watchlist
+			$_SESSION['user']['watchlist'] .= "[" . $idWl . "]";
+
+			// get = ajouter id film à la watchlist user (SQL)
+			// setWatchlist($watchlist)
+			// $watchlist = explode(",", $genres->getListeGenres());
+		}
+
+		$datas = [
+			"watchlist" => $watchlist
+		];
+		View::show("userHome.php", "Website | User Home", $datas);
+	}
+
 	public function adminHome()
 	{
 		View::show("adminHome.php", "Website | Admin Home");
@@ -195,14 +218,6 @@ class DefaultController
 		unset($_SESSION['user']);
 		//redirige ailleurs
 		header("Location: home");
-	}
-
-	public function userHome()
-	{
-		$datas = [
-			//"errors" => $errors
-		];
-		View::show("userHome.php", "Website | User Home", $datas);
 	}
 
 	/**

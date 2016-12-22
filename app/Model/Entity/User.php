@@ -8,8 +8,8 @@ class User
 	private $name;				//username
 	private $pwd;					//user password
 	private $email;				//user email
-	private $isAdmin;			//boolean : is our user an admin ?
-	private $watchlist;		//user watchlist
+	private $role;				//is our user an admin ? [user/admin]
+	private $watchlist=[];//user watchlist
 	private $votedMovies; //voted movies by user
 	private $token;				//user unique and random token for password reset
 

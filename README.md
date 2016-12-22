@@ -33,7 +33,6 @@ Member :
 Admin :
 - All the features of a Visitor and a Member, plus :
 - Create/Update/Delete a movie. (NOT YET IMPLEMENTED)
-- Create/Update/Delete a member. (NOT YET IMPLEMENTED)
 
 # Installation
 
@@ -44,6 +43,8 @@ Admin :
 - Edit the app/config/config.php file (Parameters BASE_URL & Database connexion infos !)
 - ???
 - Enjoy !
+
+PS : Default login & password are : admin & password
 
 # Special thanks :
 

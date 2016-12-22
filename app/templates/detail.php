@@ -4,7 +4,18 @@
       <h2><?= $movie->getTitle() ?></h2>
       <img src="<?= BASE_URL . "public/img/posters/" . $movie->getImdbId() . ".jpg" ?>" alt="<?= $movie->getTitle() ?>" title="<?= $movie->getTitle() ?>">
     </div>
-  <div class="col-sm-8"><br><br><br>
+  <div class="col-sm-8"><br><br>
+
+    <?php
+    if (!empty($_SESSION['user'])) {
+      echo '<a href="';
+      echo BASE_URL . 'user?addWl=' . $movie->getId();
+      echo '">';
+      echo "Add to my watchlist";
+      echo "</a>  ";
+    }
+  ?>
+
     <p><small><div>Added : <?= $movie->getDateCreated() ?></div></small></p>
     <p><small><div>Last edited : <?= $movie->getDateModified() ?></div></small></p>
 
