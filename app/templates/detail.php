@@ -34,6 +34,13 @@
 
     <p><a href="<?= $movie->getTrailerUrl() ?>">Click here to watch the trailer</a></p>
 
+<?php if (!empty($_SESSION['user'])) {
+  echo '<p><a href="mailto:?subject=I wanted you to see this movie&amp;body=Check it out on this site ' .
+        BASE_URL . 'movie/detail?id=' . $movie->getId() . '" title="Share by Email"><img src="' .
+        BASE_URL . 'public/img/mail.png">Share by Email</a></p>';
+  }?>
+
+
     <p>Plot : <?= $movie->getPlot() ?></p>
 
     <p>Cast : <?= $movie->getCast() ?></p>
