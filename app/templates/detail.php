@@ -7,14 +7,16 @@
   <div class="col-sm-8"><br><br>
 
     <?php
-
+    if (!empty($_SESSION['user'])) {
     $watchlist = explode("-", $_SESSION['user']['watchlist']);
-    if (!empty($_SESSION['user'] && !in_array($movie->getId(),$watchlist))) {
-      echo '<a href="';
-      echo BASE_URL . 'user?addWl=' . $movie->getId();
-      echo '">';
-      echo "Add to my watchlist";
-      echo "</a>  ";
+    
+      if (!in_array($movie->getId(),$watchlist)) {
+        echo '<a href="';
+        echo BASE_URL . 'user?addWl=' . $movie->getId();
+        echo '">';
+        echo "Add to my watchlist";
+        echo "</a>  ";
+      }
     }
   ?>
 
