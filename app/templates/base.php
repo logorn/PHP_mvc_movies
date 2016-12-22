@@ -1,3 +1,10 @@
+<?php
+	session_start();
+?>
+<?php if (!empty($_SESSION['user'])): ?>
+	Connecté en tant que <?= $_SESSION['user']['username'] ?>
+<?php endif; ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -48,7 +55,7 @@
 	<footer>
 			<div class="row">
 					<div class="col-lg-12">
-							<p>Copyright &copy; Your Website 2016</p>
+							<p>Copyright &copy; Movie Website 2016</p>
 					</div>
 			</div>
 			<!-- /.row -->

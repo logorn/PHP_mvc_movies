@@ -73,6 +73,13 @@ class DefaultController
 	}
 	public function userHome()
 	{
+		//traitement du formulaire de connexion
+		//appelle le usermanager pour les requetes sql
+		//affichage du formulaire
+
+		//traitement du formulaire d'inscription
+		//appelle le usermanager pour les requetes SQL
+		//affichage du formulaire
 		View::show("userHome.php", "Website | User Home");
 	}
 
@@ -86,26 +93,9 @@ class DefaultController
 		View::show("errors/404.php", "Oups ! Perdu ?");
 	}
 
-	public function register()
-	{
-		//traitement du formulaire d'inscription
-		//appelle le usermanager pour les requetes SQL
-		//affichage du formulaire
-
-	}
-
-	public function login()
-	{
-		//traitement du formulaire de connexion
-		//appelle le usermanager pour les requetes sql
-		//affichage du formulaire
-
-	}
-
 	public function logout()
 	{
 		//deconnexion
 		//redirection
-
 	}
 }
