@@ -47,6 +47,25 @@ class MovieManager
 
     }
 
+    public function countAllByGenre($genre) {
+      $sql = "SELECT COUNT(*)
+              FROM movies m
+              INNER JOIN movies_genres ON m.id = movies_genres.movieId
+              INNER JOIN genres g ON g.id = movies_genres.genreId
+              WHERE g.name = :genre";
+
+      $dbh = Db::getDbh();
+
+      $stmt = $dbh->prepare($sql);
+      $stmt->bindValue(":genre", $genre);
+
+      $stmt->execute();
+      $result = $stmt->fetchColumn();
+
+      return $result;
+
+    }
+
     public function findOne($id) {
       $sql = "SELECT *
               FROM movies

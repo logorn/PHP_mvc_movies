@@ -30,6 +30,7 @@
 </div>
 
 <?php var_dump($_POST) ?>
+<?php var_dump($moviesCount) ?>
 
 <section>
 <?php foreach ($movies as $movie): ?>
@@ -66,8 +67,13 @@
                   echo '><a href="';
                   echo "?page=";
                   echo $ii;
+                  if (!empty ($_POST['genre'])) {
+                    echo "&genre=";
+                    echo $_POST['genre'];
+                  }
                   echo '">';
                   echo $ii;
+
                   echo '</a></li>';
               }
 

@@ -28,14 +28,20 @@ class DefaultController
 
 		if (!empty($_POST['genre'])) {
 			$movies = $movieManager->findAllByGenre($_POST['genre'], $currentPage);
+			$count = $movieManager->countAllByGenre($_POST['genre']);
+		}
+		elseif (!empty($_GET['genre'])) {
+			$movies = $movieManager->findAllByGenre($_GET['genre'], $currentPage);
+			$count = $movieManager->countAllByGenre($_GET['genre']);
 		}
 		elseif (!empty($_POST['keyword'])) {
 			$movies = $movieManager->findAllByKeyword($_POST['keyword']);
 		}
 		else {
 			$movies = $movieManager->findAll($_GET['page']);
+			$count = $movieManager->countAll();
 		}
-		$count = $movieManager->countAll();
+
 		$data = [
 			"movies" => $movies,
 			"moviesCount" => $count,
