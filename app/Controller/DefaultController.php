@@ -70,6 +70,7 @@ class DefaultController
 		$userManager = new \Model\Manager\UserManager();
 		$movieManager = new \Model\Manager\MovieManager();
 
+		// ajout d'un film à la watchlist
 		if(!empty($_GET['addWl'])) {
 			$idWl = $_GET['addWl'];
 
@@ -78,7 +79,7 @@ class DefaultController
 			//si cet id n'est pas deja présent
 			if (!in_array($idWl, $isInList)) {
 					$_SESSION['user']['watchlist'] .= $idWl . "-";
-					$userManager->addUserWatchlist($_SESSION['user']['watchlist'],$_SESSION['user']['id']);
+					$userManager->setUserWatchlist($_SESSION['user']['watchlist'],$_SESSION['user']['id']);
 			}
 
 			;
@@ -86,6 +87,33 @@ class DefaultController
 			//redirige sur l'userHome
 			header("Location: user");
 		}
+
+		//suppression d'un film de la watchlist
+		if(!empty($_GET['delWl'])) {
+			$delWl = $_GET['delWl'];
+			$newList = '';
+			$isInList = explode("-", $watchlist);
+
+			//on vérifie si l'id fait bien partie de la watchlist
+			if (in_array($delWl, $isInList)) {
+
+				$isInList = array_diff($isInList, array($delWl));
+				array_pop($isInList);
+					foreach ($isInList as $id) {
+						$newList .= $id . "-";
+					}
+
+					$_SESSION['user']['watchlist'] = $newList;
+
+					$userManager->setUserWatchlist($_SESSION['user']['watchlist'],$_SESSION['user']['id']);
+			}
+
+			;
+			// setWatchlist($watchlist)
+			//redirige sur l'userHome
+			header("Location: user");
+		}
+
 		// si la watchlist n'est pas vide, on prépare l'affichage des films
 		if (!empty($_SESSION['user']['watchlist'])) {
 			$watchlist = explode("-", $watchlist);
@@ -218,7 +246,7 @@ class DefaultController
 
 					//on pourrait aussi directement connecter l'utilisateur ici
 					//redirige sur l'accueil
-					header("Location: login.php");
+					header("Location: login");
 				}
 				else {
 					$errors[] = "Oups ! Une erreur est survenue !";

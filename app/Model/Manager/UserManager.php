@@ -68,7 +68,7 @@ class UserManager
 
   }
 
-  public function addUserWatchlist($watchlist,$userId) {
+  public function setUserWatchlist($watchlist,$userId) {
 
     $sql = "UPDATE users
            SET watchlist = :watchlist

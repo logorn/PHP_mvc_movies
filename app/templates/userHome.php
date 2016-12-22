@@ -8,14 +8,24 @@ header("Location: home"); }?>
         <h1 class="page-header">Welcome back, <?= $_SESSION['user']['username'] ?></h1>
 
         <p><h3>Your Watchlist :</h3></p>
+        <table class="table table-hover table-condensed">
+          <tr>
+            <th>Movie Name</th>
+            <th>Remove from watchlist</th>
+          </tr>
         <?php if (!empty($watchlist)) {
           foreach ($watchlist as $movieId) {
-          echo '<p><a href="';
+          echo '<tr><td><a href="';
           echo BASE_URL . 'movie/detail?id=' . $movieId;
           echo '">';
-          echo $watchlistName[$movieId]['title'] . "</a></p>";
+          echo $watchlistName[$movieId]['title'] . "</a> </td>";
+          echo '<td><a href="';
+          echo BASE_URL . 'user?delWl=' . $movieId;
+          echo '">Remove</a>';
+          echo "</td></tr>";
           }
         }?>
+        </table>
 
         <hr>
         <p><h3>Your votes :</h3></p>

@@ -27,8 +27,9 @@ Member :
 - All the features of a Visitor, plus :
 - Disconnect.
 - Rate a movie. (NOT YET IMPLEMENTED)
-- Display a Watchlist. (NOT YET IMPLEMENTED)
-- Add/Delete a movie to a Watchlist. (NOT YET IMPLEMENTED)
+- Display a Watchlist.
+- Add/Delete a movie to a Watchlist.
+- Share a movie URL by e-mail. (NOT YET IMPLEMENTED)
 
 Admin :
 - All the features of a Visitor and a Member, plus :
