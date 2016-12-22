@@ -80,4 +80,27 @@ class DefaultController
 		header("HTTP/1.0 404 Not Found");
 		View::show("errors/404.php", "Oups ! Perdu ?");
 	}
+
+	public function register()
+	{
+		//traitement du formulaire d'inscription
+		//appelle le usermanager pour les requetes SQL
+		//affichage du formulaire
+
+	}
+
+	public function login()
+	{
+		//traitement du formulaire de connexion
+		//appelle le usermanager pour les requetes sql
+		//affichage du formulaire
+
+	}
+
+	public function logout()
+	{
+		//deconnexion
+		//redirection
+
+	}
 }
