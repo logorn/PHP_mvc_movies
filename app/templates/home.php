@@ -71,6 +71,10 @@
                     echo "&genre=";
                     echo $_POST['genre'];
                   }
+                  if (!empty ($_GET['genre'])) {
+                    echo "&genre=";
+                    echo $_GET['genre'];
+                  }
                   echo '">';
                   echo $ii;
 
