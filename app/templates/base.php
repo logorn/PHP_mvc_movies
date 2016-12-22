@@ -1,9 +1,6 @@
 <?php
 	session_start();
 ?>
-<?php if (!empty($_SESSION['user'])): ?>
-	Connecté en tant que <?= $_SESSION['user']['username'] ?>
-<?php endif; ?>
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -34,7 +31,16 @@
 					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 							<ul class="nav navbar-nav">
 									<li>
-											<a href="<?= BASE_URL ?>user">Log in</a>
+											<a href="<?= BASE_URL ?>login">
+												<?php
+												if (!empty($_SESSION['user'])) {
+													echo "Hello, " . $_SESSION['user']['username'];
+												}
+												else {
+													echo "Log in";
+												}
+											?>
+										</a>
 									</li>
 									<li>
 							</ul>

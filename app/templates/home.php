@@ -8,7 +8,7 @@
 </div>
 <!-- /.row -->
 <div class="row">
-<form class="col-xs-2" action="index.php" method="post">
+<form class="col-xs-2" action="index.php" method="get">
   <label for="idselect">Find a movie by genre: </label>
     <select class="form-control" name="genre" id="idselect">
 
@@ -20,7 +20,7 @@
     <button type="submit">Search</button>
 </form>
 
-<form class="col-xs-5" action="index.php" method="post">
+<form class="col-xs-5" action="index.php" method="get">
   <label for="idselect">Find a movie using a key word: </label>
       <input type="text" name="keyword" class="form-control" id="keyword" value="" placeholder="Year, Actor, Title, Plot...">
     <button type="submit">Search</button>
@@ -65,17 +65,9 @@
                   echo '><a href="';
                   echo "?page=";
                   echo $ii;
-                  if (!empty ($_POST['genre'])) {
-                    echo "&genre=";
-                    echo $_POST['genre'];
-                  }
                   if (!empty ($_GET['genre'])) {
                     echo "&genre=";
                     echo $_GET['genre'];
-                  }
-                  if (!empty ($_POST['keyword'])) {
-                    echo "&keyword=";
-                    echo $_POST['keyword'];
                   }
                   if (!empty ($_GET['keyword'])) {
                     echo "&keyword=";
