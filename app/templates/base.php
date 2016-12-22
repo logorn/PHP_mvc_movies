@@ -1,6 +1,4 @@
-<?php
-	session_start();
-?>
+
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -30,19 +28,23 @@
 					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 							<ul class="nav navbar-nav">
-									<li>
-											<a href="<?= BASE_URL ?>login">
 												<?php
 												if (!empty($_SESSION['user'])) {
-													echo "Hello, " . $_SESSION['user']['username'];
+													echo '<li><a href="';
+													echo BASE_URL . 'user">';
+													echo "Hello, " . $_SESSION['user']['username'] . ". click here to access to your home page";
+													echo "</a></li>";
+													echo '<li><a href="';
+													echo BASE_URL . 'logout">';
+													echo "Log out</a></li>";
 												}
 												else {
+													echo '<li><a href="';
+													echo BASE_URL . 'login">';
 													echo "Log in";
+													echo "</a></li>";
 												}
 											?>
-										</a>
-									</li>
-									<li>
 							</ul>
 					</div>
 					<!-- /.navbar-collapse -->

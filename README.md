@@ -20,12 +20,12 @@ Dependencies (see also "Installation") :
 Visitor :
 - Consult a list of movies and obtain the details of a selected movie.
 - Look for by word-key, genre and date.
-- Register an account (Username/Password/Email). (NOT YET IMPLEMENTED)
-- Connect. (NOT YET IMPLEMENTED)
+- Register an account (Username/Password/Email).
+- Connect.
 
 Member :
 - All the features of a Visitor, plus :
-- Disconnect. (NOT YET IMPLEMENTED)
+- Disconnect.
 - Rate a movie. (NOT YET IMPLEMENTED)
 - Display a Watchlist. (NOT YET IMPLEMENTED)
 - Add/Delete a movie to a Watchlist. (NOT YET IMPLEMENTED)

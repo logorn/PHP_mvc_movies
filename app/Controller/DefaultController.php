@@ -2,6 +2,8 @@
 
 namespace Controller;
 
+session_start();
+
 use View\View; //on peut donc utiliser cette classe comme View au lieu de \View\View
 
 class DefaultController
@@ -91,6 +93,7 @@ class DefaultController
 				//on ne devrait placer ce cookie que si une case est cochée
 				//pour l'instant, ce cookie ne sert à rien !!!
 				setcookie("remember_me", $user['token'], strtotime("+ 6 months"), "/");
+				header("Location: user");
 			}
 			else {
 				//on garde ça vague pour ne pas donner d'infos aux méchants
@@ -183,13 +186,23 @@ class DefaultController
 		$datas = [
 			"errors" => $errors
 		];
-		View::show("register", "Website | Register", $datas);
+		View::show("register.php", "Website | Register", $datas);
 	}
 
 	public function logout()
 	{
-		//deconnexion
-		//redirection
+		//efface la donnée qui permet d'identifier l'utilisateur
+		unset($_SESSION['user']);
+		//redirige ailleurs
+		header("Location: home");
+	}
+
+	public function userHome()
+	{
+		$datas = [
+			//"errors" => $errors
+		];
+		View::show("userHome.php", "Website | User Home", $datas);
 	}
 
 	/**
