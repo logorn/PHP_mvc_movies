@@ -19,7 +19,7 @@ Dependencies (see also "Installation") :
 
 Visitor :
 - Consult a list of movies and obtain the details of a selected movie.
-- Look for by word-key, genre and date. (NOT YET IMPLEMENTED : wordkey & date)
+- Look for by word-key, genre and date.
 - Register an account (Username/Password/Email). (NOT YET IMPLEMENTED)
 - Connect. (NOT YET IMPLEMENTED)
 

@@ -1,5 +1,5 @@
-
 <!-- Page Heading -->
+
 <div class="row">
     <div class="col-lg-12">
       <br>
@@ -7,8 +7,6 @@
     </div>
 </div>
 <!-- /.row -->
-
-
 <div class="row">
 <form class="col-xs-2" action="index.php" method="post">
   <label for="idselect">Find a movie by genre : </label>
@@ -29,9 +27,10 @@
 </form>
 </div>
 
+<section>
 <?php //var_dump($_POST) ?>
 
-<section>
+
 <?php foreach ($movies as $movie): ?>
 
     <div id="img">
@@ -73,6 +72,14 @@
                   if (!empty ($_GET['genre'])) {
                     echo "&genre=";
                     echo $_GET['genre'];
+                  }
+                  if (!empty ($_POST['keyword'])) {
+                    echo "&keyword=";
+                    echo $_POST['keyword'];
+                  }
+                  if (!empty ($_GET['keyword'])) {
+                    echo "&keyword=";
+                    echo $_GET['keyword'];
                   }
                   echo '">';
                   echo $ii;

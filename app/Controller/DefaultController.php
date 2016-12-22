@@ -35,7 +35,12 @@ class DefaultController
 			$count = $movieManager->countAllByGenre($_GET['genre']);
 		}
 		elseif (!empty($_POST['keyword'])) {
-			$movies = $movieManager->findAllByKeyword($_POST['keyword']);
+			$movies = $movieManager->findAllByKeyword($_POST['keyword'], $currentPage);
+			$count = $movieManager->countAllByKeyword($_POST['keyword']);
+		}
+		elseif (!empty($_GET['keyword'])) {
+			$movies = $movieManager->findAllByKeyword($_GET['keyword'], $currentPage);
+			$count = $movieManager->countAllByKeyword($_GET['keyword']);
 		}
 		else {
 			$movies = $movieManager->findAll($_GET['page']);

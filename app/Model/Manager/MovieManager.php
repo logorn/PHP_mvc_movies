@@ -66,6 +66,29 @@ class MovieManager
 
     }
 
+    public function countAllByKeyword($keyword) {
+      $sql = "SELECT COUNT(*)
+              FROM movies m
+              WHERE m.title LIKE :keyword
+              OR m.year LIKE :keyword
+              OR m.cast LIKE :keyword
+              OR m.plot LIKE :keyword
+              OR m.writers LIKE :keyword
+              OR m.directors LIKE :keyword
+              OR m.runtime LIKE :keyword;";
+
+      $dbh = Db::getDbh();
+
+      $stmt = $dbh->prepare($sql);
+      $stmt->bindValue(":keyword", $keyword);
+
+      $stmt->execute();
+      $result = $stmt->fetchColumn();
+
+      return $result;
+
+    }
+
     public function findOne($id) {
       $sql = "SELECT *
               FROM movies
@@ -101,6 +124,35 @@ class MovieManager
       $stmt->bindValue(":genre", $genre);
 
       $stmt->execute();
+      $results = $stmt->fetchAll(PDO::FETCH_CLASS, '\Model\Entity\Movie');
+      return $results;
+
+    }
+
+    public function findAllByKeyword($keyword,$page) {
+      $numPerPage = 8;
+      $offset = ($page-1) * $numPerPage;
+      $keyword = "%$keyword%";
+      $sql = "SELECT *
+              FROM movies
+              WHERE title LIKE :keyword
+              OR year LIKE :keyword
+              OR cast LIKE :keyword
+              OR plot LIKE :keyword
+              OR writers LIKE :keyword
+              OR directors LIKE :keyword
+              OR runtime LIKE :keyword
+              ORDER BY rating DESC
+              LIMIT $numPerPage
+              OFFSET $offset;";
+
+      $dbh = Db::getDbh();
+      $stmt = $dbh->prepare($sql);
+
+      $stmt->bindValue(":keyword", $keyword);
+
+      $stmt->execute();
+
       $results = $stmt->fetchAll(PDO::FETCH_CLASS, '\Model\Entity\Movie');
       return $results;
 
