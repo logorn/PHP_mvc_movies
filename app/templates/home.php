@@ -4,11 +4,9 @@
     <div class="col-lg-12">
       <br>
         <h1 class="page-header">Most popular movies</h1>
-        <h2><small>By number of votes</small></h2>
     </div>
 </div>
 <!-- /.row -->
-
 
 
 <div class="row">
@@ -26,7 +24,7 @@
 
 <form class="col-xs-5" action="index.php" method="post">
   <label for="idselect">Find a movie using a key word : </label>
-      <input type="text" name="keyword" class="form-control" id="keyword" value="" placeholder="Saisissez un nom">
+      <input type="text" name="keyword" class="form-control" id="keyword" value="" placeholder="Type a keyword">
     <button type="submit">Search</button>
 </form>
 </div>
@@ -50,26 +48,37 @@
 <div class="row text-center">
     <div class="col-lg-12">
         <ul class="pagination">
-            <li>
-                <a href="#">&laquo;</a>
-            </li>
-            <li class="active">
-                <a href="#">1</a>
-            </li>
-            <li>
-                <a href="#">2</a>
-            </li>
-            <li>
-                <a href="#">3</a>
-            </li>
-            <li>
-                <a href="#">4</a>
-            </li>
-            <li>
-                <a href="#">5</a>
-            </li>
-            <li>
-                <a href="#">&raquo;</a>
+
+            <?php if($currentPage != 1) {
+              echo '<li><a href="';
+              echo "?page=";
+              echo $currentPage-1;
+              echo '">&laquo;</a>  </li>';
+              }
+
+               $nbPages = ceil($moviesCount/8);
+               $ii = 1;
+                for ($ii; $ii <= $nbPages; $ii++) {
+                  echo '<li ';
+                  if ($ii == $currentPage) {
+                    echo 'class="active"';
+                  }
+                  echo '><a href="';
+                  echo "?page=";
+                  echo $ii;
+                  echo '">';
+                  echo $ii;
+                  echo '</a></li>';
+              }
+
+              if($currentPage != $nbPages) {
+                echo '<li><a href="';
+                echo "?page=";
+                echo $currentPage+1;
+                echo '">&raquo;</a>  </li>';
+                //class="active" pour page active
+              }
+              ?>
             </li>
         </ul>
     </div>

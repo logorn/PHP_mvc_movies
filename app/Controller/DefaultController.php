@@ -11,20 +11,38 @@ class DefaultController
 	 */
 	public function home()
 	{
+		if(empty($_GET['page'])) {
+			$currentPage = 1;
+			$_GET['page'] = 1;
+		}
+		else {
+			$currentPage = $_GET['page'];
+		}
+
 		$movieManager = new \Model\Manager\MovieManager();
+
 		$genreManager = new \Model\Manager\GenreManager();
+
 		$genres = $genreManager->findAllGenre();
 		$genres = explode(",", $genres->getListeGenres());
+
 		if (!empty($_POST['genre'])) {
-			$movies = $movieManager->findAllByGenre($_POST['genre']);
+			$movies = $movieManager->findAllByGenre($_POST['genre'], $currentPage);
 		}
 		elseif (!empty($_POST['keyword'])) {
 			$movies = $movieManager->findAllByKeyword($_POST['keyword']);
 		}
 		else {
-			$movies = $movieManager->findAll();
+			$movies = $movieManager->findAll($_GET['page']);
 		}
-		View::show("home.php", "Website | Home", ["movies" => $movies], ["genres" => $genres]);
+		$count = $movieManager->countAll();
+		$data = [
+			"movies" => $movies,
+			"moviesCount" => $count,
+			"genres" => $genres,
+			"currentPage" => $currentPage
+		];
+		View::show("home.php", "Website | Home", $data);
 	}
 	public function detail()
 	{

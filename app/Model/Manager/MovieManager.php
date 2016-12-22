@@ -11,19 +11,39 @@ use PDO;
 class MovieManager
 {
 
-    public function findAll() {
+    public function findAll($page) {
+      $numPerPage = 8;
+      $offset = ($page-1) * $numPerPage;
+
       $sql = "SELECT *
               FROM movies
-              ORDER BY votes DESC
+              ORDER BY rating DESC
+              LIMIT $numPerPage
+              OFFSET $offset;";
 
-              ;";
       $dbh = Db::getDbh();
 
       $stmt = $dbh->prepare($sql);
+
       $stmt->execute();
       $results = $stmt->fetchAll(PDO::FETCH_CLASS, '\Model\Entity\Movie');
 
       return $results;
+
+    }
+
+    public function countAll() {
+      $sql = "SELECT COUNT(*)
+              FROM movies;";
+
+      $dbh = Db::getDbh();
+
+      $stmt = $dbh->prepare($sql);
+
+      $stmt->execute();
+      $result = $stmt->fetchColumn();
+
+      return $result;
 
     }
 
@@ -43,13 +63,18 @@ class MovieManager
 
     }
 
-    public function findAllByGenre($genre) {
+    public function findAllByGenre($genre,$page) {
+      $numPerPage = 8;
+      $offset = ($page-1) * $numPerPage;
+
       $sql = "SELECT g.id AS genreId, m.id, m.imdbId, m.title
               FROM movies m
               INNER JOIN movies_genres ON m.id = movies_genres.movieId
               INNER JOIN genres g ON g.id = movies_genres.genreId
-              WHERE g.name = 'Action'
-              ORDER BY votes DESC;";
+              WHERE g.name = :genre
+              ORDER BY rating DESC
+              LIMIT $numPerPage
+              OFFSET $offset;";
 
       $dbh = Db::getDbh();
       $stmt = $dbh->prepare($sql);
