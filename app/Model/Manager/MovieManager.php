@@ -105,6 +105,22 @@ class MovieManager
 
     }
 
+    public function findOneTitle($id) {
+      $sql = "SELECT title
+              FROM movies
+              WHERE id = :id;";
+
+      $dbh = Db::getDbh();
+      $stmt = $dbh->prepare($sql);
+
+      $stmt->bindValue(":id", $id);
+
+      $stmt->execute();
+      $result = $stmt->fetch();
+      return $result;
+
+    }
+
     public function findAllByGenre($genre,$page) {
       $numPerPage = 8;
       $offset = ($page-1) * $numPerPage;

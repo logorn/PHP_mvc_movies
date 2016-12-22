@@ -19,7 +19,7 @@ Dependencies (see also "Installation") :
 
 Visitor :
 - Consult a list of movies and obtain the details of a selected movie.
-- Look for by word-key, genre and date.
+- Search a movie by word-key, genre and date.
 - Register an account (Username/Password/Email).
 - Connect.
 
@@ -44,7 +44,7 @@ Admin :
 - ???
 - Enjoy !
 
-PS : Default login & password are : admin & password
+PS : Default administrator's username & password are : "admin" & "password".
 
 # Special thanks :
 

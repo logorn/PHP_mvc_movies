@@ -32,7 +32,7 @@
 												if (!empty($_SESSION['user'])) {
 													echo '<li><a href="';
 													echo BASE_URL . 'user">';
-													echo "Hello, " . $_SESSION['user']['username'] . ". click here to access to your home page";
+													echo "Hello, " . $_SESSION['user']['username'] . ". Click here to access to your home page";
 													echo "</a></li>";
 													echo '<li><a href="';
 													echo BASE_URL . 'logout">';

@@ -9,7 +9,7 @@ class User
 	private $pwd;					//user password
 	private $email;				//user email
 	private $role;				//is our user an admin ? [user/admin]
-	private $watchlist=[];//user watchlist
+	private $watchlist;		//user watchlist
 	private $votedMovies; //voted movies by user
 	private $token;				//user unique and random token for password reset
 

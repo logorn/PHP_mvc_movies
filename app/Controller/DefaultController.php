@@ -65,21 +65,43 @@ class DefaultController
 	public function userHome()
 	{
 		$watchlist = $_SESSION['user']['watchlist'];
+		$watchlistName[] = '';
+
 		$usermanager = new \Model\Manager\UserManager();
+		$movieManager = new \Model\Manager\MovieManager();
 
 		if(!empty($_GET['addWl'])) {
 			$idWl = $_GET['addWl'];
 
-			//ajouter l'id du get à la watchlist
-			$_SESSION['user']['watchlist'] .= "[" . $idWl . "]";
+
+			$isInList = stripos($watchlist, $idWl);
+
+			//ajouter l'id du get à la watchlist + titre du film
+			//si cet id n'est pas deja présent
+			if ($isInList === false) {
+					$_SESSION['user']['watchlist'] .= $idWl . "-";
+			}
+
+			;
 
 			// get = ajouter id film à la watchlist user (SQL)
 			// setWatchlist($watchlist)
-			// $watchlist = explode(",", $genres->getListeGenres());
+			//redirige sur l'userHome
+			header("Location: user");
+		}
+		// si la watchlist n'est pas vide, on prépare l'affichage des films
+		if (!empty($_SESSION['user']['watchlist'])) {
+			$watchlist = explode("-", $watchlist);
+			//on détruit la dernière entrée du tableau, vide, causée par explode
+			array_pop($watchlist);
+			foreach ($watchlist as $movieId) {
+				$watchlistName[$movieId] = $movieManager->findOneTitle($movieId);
+			}
 		}
 
 		$datas = [
-			"watchlist" => $watchlist
+			"watchlist" => $watchlist,
+			"watchlistName" => $watchlistName
 		];
 		View::show("userHome.php", "Website | User Home", $datas);
 	}
