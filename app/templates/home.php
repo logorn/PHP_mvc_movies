@@ -29,8 +29,7 @@
 </form>
 </div>
 
-<?php var_dump($_POST) ?>
-<?php var_dump($moviesCount) ?>
+<?php //var_dump($_POST) ?>
 
 <section>
 <?php foreach ($movies as $movie): ?>
@@ -47,7 +46,7 @@
 
 <!-- Pagination -->
 <div class="row text-center">
-    <div class="col-lg-12">
+    <div class="col-lg-10">
         <ul class="pagination">
 
             <?php if($currentPage != 1) {
