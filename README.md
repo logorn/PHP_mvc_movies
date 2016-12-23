@@ -40,7 +40,8 @@ Member :
 Admin :
 - All the features of a Visitor and a Member, plus :
 - Create a movie.
-- Update/Delete a movie. (NOT YET IMPLEMENTED)
+- Delete a movie.
+- Edit movie's informations. (NOT YET IMPLEMENTED)
 
 # Installation
 
