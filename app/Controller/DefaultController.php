@@ -221,8 +221,10 @@ class DefaultController
 		}
 
 		//suppression d'un film
-		if (!empty($_GET['delMovie'])){
+		if (!empty($_GET['delMovie']) && ($_SESSION['user']['role'] == 'admin')){
 
+			$movieManager = new \Model\Manager\MovieManager();
+			$movieManager->delOne($_GET['delMovie']);
 		}
 
 		//modification d'un film

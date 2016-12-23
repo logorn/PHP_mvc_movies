@@ -53,7 +53,7 @@ class MovieManager
 
     public function delOne($id) {
       $sql = "DELETE
-              FROM posts
+              FROM movies
               WHERE id = :id;";
 
       $dbh = Db::getDbh();
