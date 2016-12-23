@@ -6,7 +6,7 @@ PHP Website displaying Movies informations from an SQL database using MVC.
 Rules :
 - English only.
 - Based on a MVC PHP website sample (https://github.com/gsylvestre/mvc-base).
-- Must respect instructions given in brief-client.txt file.
+- Must respect instructions (in french) given in brief-client.txt file.
 - Must start from a specific database "movies_db.sql" (which can be modified).
 
 (WARNING : To test this site, use "new_movies_db.sql", see "Installation")
@@ -14,6 +14,12 @@ Rules :
 Dependencies (see also "Installation") :
 - "abeautifulsite/simpleimage"
 - "ircmaxell/random-lib"
+
+# IMPORTANT
+
+This code is far from being perfect and secured. It is still a work in progress.
+The point is just to learn to code in PHP MVC.
+Please do not use this to make a real website without, at least, enhancing the security.
 
 # Features
 
@@ -40,8 +46,14 @@ Admin :
 
 - Clone this repository in the folder of your choice
 - Import the modified SQL database (new_movies_db.sql)
-- Setup the "abeautifulsite" dependency in command line : composer require abeautifulsite/simpleimage
-- Setup the "random-lib" dependency in command line : composer require ircmaxell/random-lib
+- Setup the "abeautifulsite" dependency in command line :
+```
+composer require abeautifulsite/simpleimage
+```
+- Setup the "random-lib" dependency in command line :
+```
+composer require ircmaxell/random-lib
+```
 - Edit the app/config/config.php file (Parameters BASE_URL & Database connexion infos !)
 - ???
 - Enjoy !
