@@ -11,6 +11,79 @@ use PDO;
 class MovieManager
 {
 
+  public function addOne($movie) {
+    // on prépare notre requête SQL
+    $dbh = Db::getDbh();
+
+    $sql = "INSERT INTO `movies` (`imdbId`, `title`, `year`, `cast`,
+                                  `directors`, `writers`, `plot`, `runtime`,
+                                  `trailerUrl`, `dateCreated`, `dateModified`)
+                   VALUES ( :imdbId, :title, :year, :cast, :directors, :writers,
+                                 :plot, :runtime, :trailerUrl, NOW(), NOW())";
+
+    $stmt = $dbh->prepare($sql);
+
+    $stmt->bindValue(":imdbId", $movie->getImdbId());
+    $stmt->bindValue(":title", $movie->getTitle());
+    $stmt->bindValue(":year", $movie->getYear());
+    $stmt->bindValue(":cast", $movie->getCast());
+    $stmt->bindValue(":directors", $movie->getDirectors());
+    $stmt->bindValue(":writers", $movie->getWriters());
+    $stmt->bindValue(":plot", $movie->getPlot());
+    $stmt->bindValue(":runtime", $movie->getRuntime());
+    $stmt->bindValue(":trailerUrl", $movie->getTrailerUrl());
+
+    $stmt->execute();
+    }
+
+    public function addOneGenre($movieId) {
+      $dbh = Db::getDbh();
+
+      $sql = "INSERT INTO `movies_genres` (`:movieId`, `genreId`)
+                     VALUES ('1', '2');";
+
+      $stmt = $dbh->prepare($sql);
+
+      $stmt->bindValue(":movieId", $movieId);
+      $stmt->bindValue(":movieId", $movieId);
+
+      $stmt->execute();
+
+    }
+
+    public function delOne($id) {
+      $sql = "DELETE
+              FROM posts
+              WHERE id = :id;";
+
+      $dbh = Db::getDbh();
+      $stmt = $dbh->prepare($sql);
+
+      $stmt->bindValue(":id", $id);
+
+      $stmt->execute();
+
+    }
+
+
+    public function editOne(\Model\Entity\Post $post) {
+      // on prépare notre requête SQL
+      $sql = "UPDATE posts SET title= :title,
+                              content= :content,
+                              dateCreated= :dateCreated
+                              WHERE id = :id;";
+
+      $dbh = Db::getDbh();
+      $stmt = $dbh->prepare($sql);
+
+      $stmt->bindValue(":title", $post->getTitle());
+      $stmt->bindValue(":content", $post->getContent());
+      $stmt->bindValue(":dateCreated", $post->getDateCreated());
+      $stmt->bindValue(":id", $post->getId());
+
+      $stmt->execute();
+    }
+
     public function findAll($page) {
       $numPerPage = 8;
       $offset = ($page-1) * $numPerPage;
@@ -191,56 +264,6 @@ class MovieManager
 
       return $result;
 
-    }
-
-    public function delOne($id) {
-      $sql = "DELETE
-              FROM posts
-              WHERE id = :id;";
-
-      $dbh = Db::getDbh();
-      $stmt = $dbh->prepare($sql);
-
-      $stmt->bindValue(":id", $id);
-
-      $stmt->execute();
-
-    }
-
-    public function addOne(\Model\Entity\Post $post) {
-      // on prépare notre requête SQL
-      $sql = "INSERT INTO posts(title,
-                                content,
-                                image,
-                                dateCreated)
-                     VALUES (:title,:content, :image,NOW());";
-
-      $dbh = Db::getDbh();
-      $stmt = $dbh->prepare($sql);
-
-      $stmt->bindValue(":title", $post->getTitle());
-      $stmt->bindValue(":content", $post->getContent());
-      $stmt->bindValue(":image", $post->getImage());
-
-      $stmt->execute();
-    }
-
-    public function editOne(\Model\Entity\Post $post) {
-      // on prépare notre requête SQL
-      $sql = "UPDATE posts SET title= :title,
-                              content= :content,
-                              dateCreated= :dateCreated
-                              WHERE id = :id;";
-
-      $dbh = Db::getDbh();
-      $stmt = $dbh->prepare($sql);
-
-      $stmt->bindValue(":title", $post->getTitle());
-      $stmt->bindValue(":content", $post->getContent());
-      $stmt->bindValue(":dateCreated", $post->getDateCreated());
-      $stmt->bindValue(":id", $post->getId());
-
-      $stmt->execute();
     }
 
 }
