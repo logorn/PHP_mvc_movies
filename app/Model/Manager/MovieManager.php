@@ -36,16 +36,16 @@ class MovieManager
     $stmt->execute();
     }
 
-    public function addOneGenre($movieId) {
+    public function addOneGenre($movieId,$genreId) {
       $dbh = Db::getDbh();
 
-      $sql = "INSERT INTO `movies_genres` (`:movieId`, `genreId`)
-                     VALUES ('1', '2');";
+      $sql = "INSERT INTO `movies_genres` (`movieId`, `genreId`)
+                     VALUES (:movieId, :genreId);";
 
       $stmt = $dbh->prepare($sql);
 
       $stmt->bindValue(":movieId", $movieId);
-      $stmt->bindValue(":movieId", $movieId);
+      $stmt->bindValue(":genreId", $genreId);
 
       $stmt->execute();
 
@@ -174,6 +174,22 @@ class MovieManager
 
       $stmt->execute();
       $result = $stmt->fetchObject('\Model\Entity\Movie');
+      return $result;
+
+    }
+
+    public function findIdByTitle($name) {
+      $sql = "SELECT id
+              FROM movies
+              WHERE title = :title;";
+
+      $dbh = Db::getDbh();
+      $stmt = $dbh->prepare($sql);
+
+      $stmt->bindValue(":title", $name);
+
+      $stmt->execute();
+      $result = $stmt->fetch();
       return $result;
 
     }

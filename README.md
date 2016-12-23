@@ -33,7 +33,7 @@ Member :
 
 Admin :
 - All the features of a Visitor and a Member, plus :
-- Create a movie. (PARTIALLY WORKING)
+- Create a movie.
 - Update/Delete a movie. (NOT YET IMPLEMENTED)
 
 # Installation

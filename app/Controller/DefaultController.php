@@ -209,6 +209,11 @@ class DefaultController
 
 				}
 				$movieManager->addOne($movie);
+				$movieId = $movieManager->findIdByTitle($movie->getTitle());
+				$movie->setId($movieId);
+				$movieId = $movie->getId();
+				$movieGenre = $movie->getGenre();
+				$movieManager->addOneGenre($movieId['id'],$movieGenre);
 			}
 
 
@@ -225,6 +230,8 @@ class DefaultController
 
 		}
 
+		$genres = $genreManager->findAllGenre();
+		$genres = explode(",", $genres->getListeGenres());
 
 		$datas = [
 			"movies" => $movies,
@@ -232,6 +239,7 @@ class DefaultController
 			"genres" => $genres,
 			"currentPage" => $currentPage,
 			"token" => $token,
+			"genre" => $genres,
 			"error" => $error
 		];
 		View::show("adminHome.php", "Website | Admin Home", $datas);

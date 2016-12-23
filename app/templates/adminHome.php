@@ -8,8 +8,6 @@ header("Location: home"); }?>
         <h1 class="page-header">Welcome back, <?= $_SESSION['user']['username'] ?></h1>
         <p><h3>Admin Page</h3></p>
         <hr>
-        <?php var_dump($_POST) ?>
-        <?php var_dump($_FILES) ?>
             <form method="POST" enctype="multipart/form-data">
               <legend>ADD A MOVIE</legend>
               <input type="hidden" name="csrf_token" value ="<?= $token ?>">
@@ -29,7 +27,14 @@ header("Location: home"); }?>
               </tr>
               <tr>
                 <td><label for="movieGenre">Genre :</label></td>
-                <td><input type="text" name="movieGenre" id="movieGenre" value=""></td>
+                <td><select class="form-control" name="movieGenre" id="movieGenre">
+
+                  <?php $ii = '1'; foreach ($genres as $key): ?>
+                  <option value="<?= $ii ?>"><?= $key ?></option>
+                  <?php $ii = $ii+1?>
+                  <?php endforeach; ?>
+
+                </select></td>
               </tr>
               <tr>
                 <td><label for="movieDirectors">Directors :</label></td>
