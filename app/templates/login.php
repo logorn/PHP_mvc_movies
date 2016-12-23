@@ -6,15 +6,15 @@
     </div>
 </div>
 
-	<div class="container">
+	<div class="col-sm-3">
 		<form method="POST">
 			<div>
 				<label for="usernameOrEmail">Username or Email :</label>
-				<input type="text" name="usernameOrEmail" id="usernameOrEmail" value="">
+				<input class="form-control" type="text" name="usernameOrEmail" id="usernameOrEmail" value="">
 			</div>
 			<div>
 				<label for="password">Password :</label>
-				<input type="password" name="password" id="password" value="">
+				<input class="form-control" type="password" name="password" id="password" value="">
 			</div>
 			<div>
 				<p><?php if ($error != '') echo '<div class="alert alert-danger"><strong>Error !</strong> ' . $error . '</div>'; ?></p>
@@ -24,7 +24,7 @@
 			</div>
 		</form>
     </div>
-    <div>
-      <h1 class="page-header">New here ?
-        <small><a href="register">Register an account</a></small></h1>
+    <div class="col-sm-5">
+      <h2 class="page-header">New here ?
+        <small><a href="register">Register an account</a></small></h2>
     </div>

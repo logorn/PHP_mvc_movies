@@ -5,23 +5,25 @@
         <h1 class="page-header">Register a new account</h1>
     </div>
 </div>
+<div class="col-sm-5">
+
 
     <form method="POST">
 			<div>
-				<label for="username">Pseudo</label>
-				<input type="text" name="username" id="username" value="">
+				<label for="username">Username</label>
+				<input class="form-control" type="text" name="username" id="username" value="">
 			</div>
 			<div>
 				<label for="email">Email</label>
-				<input type="email" name="email" id="email" value="">
+				<input class="form-control" type="email" name="email" id="email" value="">
 			</div>
 			<div>
-				<label for="password">Mot de passe</label>
-				<input type="password" name="password" id="password" value="">
+				<label for="password">Password</label>
+				<input class="form-control" type="password" name="password" id="password" value="">
 			</div>
 			<div>
-				<label for="password_bis">Mot de passe encore</label>
-				<input type="password" name="password_bis" id="password_bis" value="">
+				<label for="password_bis">Password (again)</label>
+				<input class="form-control" type="password" name="password_bis" id="password_bis" value="">
 			</div>
 			<div>
 			<?php
@@ -32,7 +34,7 @@
       }?>
 			</div>
 			<div>
-				<button type="submit">M'inscrire !</button>
+				<button type="submit">Register !</button>
 			</div>
 		</form>
 

@@ -66,7 +66,7 @@ class MovieManager
     }
 
 
-    public function editOne(\Model\Entity\Post $post) {
+    public function editOne($id) {
       // on prépare notre requête SQL
       $sql = "UPDATE posts SET title= :title,
                               content= :content,

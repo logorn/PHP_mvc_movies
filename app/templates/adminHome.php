@@ -9,21 +9,25 @@ header("Location: home"); }?>
         <p><h3>Admin Page</h3></p>
         <hr>
             <form method="POST" enctype="multipart/form-data">
-              <legend>ADD A MOVIE</legend>
+              <legend><?php if(isset($_GET['updateMovie'])) {
+                echo "Edit a movie";
+              } else {
+                echo "Add a movie";
+              }?></legend>
               <input type="hidden" name="csrf_token" value ="<?= $token ?>">
               <input type="hidden" name="addMovie" value ="OK">
               <table>
                 <tr>
                   <td><label for="movieName">Name :</label></td>
-                  <td><input type="text" name="movieName" id="movieName" value=""></td>
+                  <td><input class="form-control" type="text" name="movieName" id="movieName" value=""></td>
                 </tr>
               <tr>
                 <td><label for="movieYear">Year :</label></td>
-                <td><input type="text" name="movieYear" id="movieYear" value=""></td>
+                <td><input class="form-control" type="text" name="movieYear" id="movieYear" value=""></td>
               </tr>
               <tr>
                 <td><label for="movieRuntime">Runtime :</label></td>
-                <td><input type="text" name="movieRuntime" id="movieRuntime" value=""></td>
+                <td><input class="form-control" type="text" name="movieRuntime" id="movieRuntime" value=""></td>
               </tr>
               <tr>
                 <td><label for="movieGenre">Genre :</label></td>
@@ -38,23 +42,23 @@ header("Location: home"); }?>
               </tr>
               <tr>
                 <td><label for="movieDirectors">Directors :</label></td>
-                <td><input type="text" name="movieDirectors" id="movieDirectors" value=""></td>
+                <td><input class="form-control" type="text" name="movieDirectors" id="movieDirectors" value=""></td>
               </tr>
               <tr>
                 <td><label for="movieWriters">Writers :</label></td>
-                <td><input type="text" name="movieWriters" id="movieWriters" value=""></td>
+                <td><input class="form-control" type="text" name="movieWriters" id="movieWriters" value=""></td>
               </tr>
               <tr>
                 <td><label for="moviePlot">Plot :</label></td>
-                <td><input type="text" name="moviePlot" id="moviePlot" value=""></td>
+                <td><input class="form-control" type="text" name="moviePlot" id="moviePlot" value=""></td>
               </tr>
               <tr>
                 <td><label for="movieCast">Cast :</label></td>
-                <td><input type="text" name="movieCast" id="movieCast" value=""></td>
+                <td><input class="form-control" type="text" name="movieCast" id="movieCast" value=""></td>
               </tr>
               <tr>
                 <td><label for="movieTrailerUrl">Trailer Url :</label></td>
-                <td><input type="text" name="movieTrailerUrl" id="movieTrailerUrl" value=""></td>
+                <td><input class="form-control" type="text" name="movieTrailerUrl" id="movieTrailerUrl" value=""></td>
               </tr>
               <tr>
                 <td><label for="moviePoster">Image</label></td>
@@ -70,7 +74,7 @@ header("Location: home"); }?>
             </form>
             <hr>
           <table class="table table-hover table-condensed">
-            <legend>EDIT A MOVIE</legend>
+            <legend>Edit or delete a movie</legend>
             <tr>
               <th>Movie Name</th>
               <th>Options</th>
