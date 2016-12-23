@@ -45,7 +45,7 @@
 
 <!-- Pagination -->
 <div class="row text-center">
-    <div class="col-lg-10">
+    <div class="">
         <ul class="pagination">
 
             <?php if($currentPage != 1) {

@@ -29,7 +29,7 @@ Member :
 - Rate a movie. (NOT YET IMPLEMENTED)
 - Display a Watchlist.
 - Add/Delete a movie to a Watchlist.
-- Share a movie URL by e-mail. (NOT YET IMPLEMENTED)
+- Share a movie URL by e-mail.
 
 Admin :
 - All the features of a Visitor and a Member, plus :

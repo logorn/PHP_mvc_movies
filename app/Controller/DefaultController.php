@@ -133,7 +133,55 @@ class DefaultController
 
 	public function adminHome()
 	{
-		View::show("adminHome.php", "Website | Admin Home");
+		$error = '';
+		
+		if(empty($_GET['page'])) {
+			$currentPage = 1;
+			$_GET['page'] = 1;
+		}
+		else {
+			$currentPage = $_GET['page'];
+		}
+
+		$movieManager = new \Model\Manager\MovieManager();
+		$genreManager = new \Model\Manager\GenreManager();
+
+		$genres = $genreManager->findAllGenre();
+		$genres = explode(",", $genres->getListeGenres());
+
+		$movies = $movieManager->findAll($_GET['page']);
+		$count = $movieManager->countAll();
+
+		$factory = new \RandomLib\Factory;
+		$generator = $factory->getGenerator(new \SecurityLib\Strength(\SecurityLib\Strength::MEDIUM));
+		$token = $generator->generateString(50, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ');
+		$_SESSION['user']['token'] = $token;
+
+		//ajout d'un film
+		if (!empty($_POST['addMovie'])){
+
+		}
+
+		//suppression d'un film
+		if (!empty($_POST['delMovie'])){
+
+		}
+
+		//modification d'un film
+		if (!empty($_POST['updateMovie'])){
+
+		}
+
+
+		$datas = [
+			"movies" => $movies,
+			"moviesCount" => $count,
+			"genres" => $genres,
+			"currentPage" => $currentPage,
+			"token" => $token,
+			"error" => $error
+		];
+		View::show("adminHome.php", "Website | Admin Home", $datas);
 	}
 	public function login()
 	{

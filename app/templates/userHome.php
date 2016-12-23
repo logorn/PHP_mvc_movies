@@ -27,8 +27,19 @@ header("Location: home"); }?>
         }?>
         </table>
 
+        <?php
+        if($_SESSION['user']['role'] == 'admin') {
+          echo '<a href="';
+          echo BASE_URL . "admin";
+          echo '"><hr><p><h3>Admin Page</h3></p></a>';
+        }
+        ?>
+
+
+
         <hr>
         <p><h3>Your votes :</h3></p>
+
 
         <hr>
     </div>

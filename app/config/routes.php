@@ -19,6 +19,7 @@
 		"/home" => "home", 						// accueil du site
 		"/movie/detail" => "detail", 	// détails sur un film selectionné
 		"/user" => "userHome", 				// panneau user (affiche la watchlist)
+		"/admin" => "adminHome", 				// panneau admin (CRUD movies)
 		"/login" => "login", 					// user login page
 		"/logout" => "logout", 				// user logout page
 		"/register" => "register" 		// user register page
