@@ -8,40 +8,47 @@ header("Location: home"); }?>
         <h1 class="page-header">Welcome back, <?= $_SESSION['user']['username'] ?></h1>
         <p><h3>Admin Page</h3></p>
         <hr>
-            <form method="POST">
+        <?php var_dump($_POST) ?>
+            <form method="POST" enctype="multipart/form-data">
               <legend>ADD A MOVIE</legend>
               <input type="hidden" name="csrf_token" value ="<?= $token ?>">
-              <div>
+              <input type="hidden" name="addMovie" value ="OK">
+              <div class="form-group">
                 <label for="movieName">Name :</label>
                 <input type="text" name="movieName" id="movieName" value="">
               </div>
-              <div>
+              <div class="form-group">
                 <label for="movieYear">Year :</label>
                 <input type="text" name="movieYear" id="movieYear" value="">
               </div>
-              <div>
+              <div class="form-group">
                 <label for="movieRuntime">Runtime :</label>
                 <input type="text" name="movieRuntime" id="movieRuntime" value="">
               </div>
-              <div>
+              <div class="form-group">
                 <label for="movieGenre">Genre :</label>
                 <input type="text" name="movieGenre" id="movieGenre" value="">
               </div>
-              <div>
+              <div class="form-group">
                 <label for="movieDirectors">Directors :</label>
                 <input type="text" name="movieDirectors" id="movieDirectors" value="">
               </div>
-              <div>
+              <div class="form-group">
                 <label for="movieWriters">Writers :</label>
                 <input type="text" name="movieWriters" id="movieWriters" value="">
               </div>
-              <div>
+              <div class="form-group">
                 <label for="moviePlot">Plot :</label>
                 <input type="text" name="moviePlot" id="moviePlot" value="">
               </div>
-              <div>
+              <div class="form-group">
                 <label for="movieCast">Cast :</label>
                 <input type="text" name="movieCast" id="movieCast" value="">
+              </div>
+
+              <div class="form-group">
+                <label for="moviePoster">Image</label>
+                <input type="file" id="moviePoster" name="moviePoster">
               </div>
 
               <div>

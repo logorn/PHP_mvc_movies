@@ -134,7 +134,7 @@ class DefaultController
 	public function adminHome()
 	{
 		$error = '';
-		
+
 		if(empty($_GET['page'])) {
 			$currentPage = 1;
 			$_GET['page'] = 1;
@@ -158,17 +158,63 @@ class DefaultController
 		$_SESSION['user']['token'] = $token;
 
 		//ajout d'un film
-		if (!empty($_POST['addMovie'])){
+		if (!empty($_POST['addMovie'])) {
+			//(($_POST['csrf_token'] == $token)))
+			$error = "OK!";
+			$movieName = strip_tags($_POST['movieName']);
+			$movieYear = strip_tags($_POST['movieYear']);
+			$movieRuntime = strip_tags($_POST['movieRuntime']);
+			$movieGenre = strip_tags($_POST['movieGenre']);
+			$movieDirectors = strip_tags($_POST['movieDirectors']);
+			$movieWriters = strip_tags($_POST['movieWriters']);
+			$moviePlot = strip_tags($_POST['moviePlot']);
+			$movieCast = strip_tags($_POST['movieCast']);
+
+			//si un fichier a bien été envoyé
+			if ($_FILES['moviePoster']['error'] !=4) {
+
+				//type mime
+				$file = $_FILES['moviePoster']['tmp_name'];
+				$finfo = finfo_open(FILEINFO_MIME_TYPE);
+				$mime = finfo_file($finfo,$file);
+				finfo_close($finfo);
+
+				//check : image/jpeg image/png image/gif
+				$uploadError = null;
+				if(substr($mime, 0, 5) != "image") {
+					$uploadError = "MimeType invalide";
+				}
+
+				//taille
+				if ($_FILES['moviePoster']['size'] > 1000000) {
+					$uploadError = "Fichier trop lourd";
+				}
+
+				// vérifier les erreurs d'upload
+				if ($_FILES['moviePoster']['error'] !== 0) {
+					$uploadError = "Une erreur est survenue";
+				}
+
+				//si ok, on déplace / redimensionne / convertir jpg
+				if ($uploadError == null) {
+					$img = new \abeautifulsite\SimpleImage($file);
+					$destination = uniqid() . ".jpg";
+					$post->setImage($destination);
+					$img->best_fit(300,300)
+							 ->save(UPLOAD_DIR . $destination);
+
+				}
+			}
 
 		}
 
 		//suppression d'un film
-		if (!empty($_POST['delMovie'])){
+		if (!empty($_GET['delMovie'])){
 
 		}
 
 		//modification d'un film
-		if (!empty($_POST['updateMovie'])){
+		if (!empty($_GET['updateMovie'])){
 
 		}
 
