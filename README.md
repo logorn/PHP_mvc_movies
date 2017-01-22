@@ -1,4 +1,4 @@
-# mvc-movies (School Exercice)
+# mvc-movies (School Exercise)
 
 
 PHP Website displaying Movies informations from an SQL database using MVC.
